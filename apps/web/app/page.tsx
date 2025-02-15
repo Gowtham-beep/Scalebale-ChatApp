@@ -5,13 +5,11 @@ import classes from "./page.module.css"
 
  const Page=()=>{
 
-  const {sendMessage}=useSocket()
+  const {sendMessage,messages}=useSocket()
   const[message,setMessage]=useState('')
 return(
  <div>
-  <div>
-    <h1>All Messages appera here</h1>
-  </div>
+  
   <div>
     <input 
     onChange={e=>setMessage(e.target.value)}
@@ -19,8 +17,16 @@ return(
     placeholder="Messages...."
     type="text" />
     <button 
-    onClick={e=>sendMessage(message)}
+    onClick={(e)=>sendMessage(message)}
     className={classes["button"]} >Send</button>
+  </div>
+  <div>
+    <h1>All Messages appera here</h1>
+    <ul>
+    {messages.map((e)=>(
+      <li key ={e}>{e}</li>
+    ))}
+    </ul>
   </div>
  </div>
 )

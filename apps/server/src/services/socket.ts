@@ -1,5 +1,6 @@
 import { Server } from "socket.io";
 import Redis from 'ioredis'
+import { channel } from "diagnostics_channel";
 
 const pub= new Redis({
     host:'valkey-2be177a0-gn86923-ebec.h.aivencloud.com',
@@ -41,6 +42,12 @@ class SocketService{
                 //publish the message to 
                 await pub.publish('MESSAGES',JSON.stringify({message}))
             })
+        })
+        sub.on("message",(channel,message)=>{
+            if(channel==='MESSAGES'){
+                console.log("Message from the Redis:",message)
+                io.emit('message',message) 
+            }
         })
     }
 }

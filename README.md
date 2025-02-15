@@ -53,6 +53,20 @@ REDIS_PASSWORD=<your-redis-password>
 ```sh
   npm run dev
 ```
+for Scalabilityu test do :
+```
+set PORT=3007 && npm start
+~~~~~~~~~~~~~~~~~~
+> server@1.0.0 start
+> node dist/index   
+
+Init socket.io services..
+Init Socket Listeners....
+HTTP server started at PORT:3007 
+Message from the Redis: {"message":"Scalability is up"}
+Message from the Redis: {"message":"hi"}
+Message from the Redis: {"message":"how are you"}
+```
 This will run both the **server** and **web** applications in parallel using Turborepo.
 
 ---
